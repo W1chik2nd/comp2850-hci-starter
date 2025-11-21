@@ -1,33 +1,26 @@
 # Week 9 • Lab 2 — Peer Pilots, Debrief, and Task 1 Draft Pack
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge lo">LO11</span>
-  <span class="badge lo">LO12</span>
-  <span class="badge lo">LO13</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">A&I</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 9](https://img.shields.io/badge/Week-9-orange)
+![Lab 2](https://img.shields.io/badge/Lab-2-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**.
+
 
 ---
 
 ## Before Lab: Required Reading (10 mins)
 
 📖 **Essential**:
+- Push/log Week 9 starter repo instrumentation before pilots
 - Review your Week 9 Lab 1 protocol (`wk09/lab-wk9/research/protocol.md`)
-- Review `../../references/consent-pii-faq.md`
+- Review `references/consent-pii-faq.md`
 - [Nielsen: How Many Test Users in Usability Studies?](https://www.nngroup.com/articles/how-many-test-users/)
 
 📖 **Quick reference**:
-- `../../references/evaluation-metrics-quickref.md`
-- `../../references/assistive-testing-checklist.md`
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
+- [Assistive Testing Checklist](../references/assistive-testing-checklist.md)
+- [Screenshot Evidence Guide](../references/screenshot-guide.md)
 
 ---
 
@@ -49,17 +42,26 @@ Running peer pilots is **the most critical empirical HCI activity** in this modu
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Conduct** 5–6 peer pilots following ethical protocol (LO3, LO8)
-2. **Collect** quantitative data (metrics.csv) and qualitative observations (pilot-notes) (LO4, LO6)
-3. **Identify** usability and accessibility issues through systematic observation (LO1, LO3)
-4. **Document** findings with evidence chains (raw data → issue → backlog item) (LO11, LO12)
-5. **Assemble** draft Task 1 evidence pack (plan, data, findings, artefacts) (LO13)
+### Lab Objectives
 
-Maps to ACM: HCI-Evaluation (quantitative + qualitative methods), A&I (Accessibility & Inclusion)
-Maps to WCAG: 2.2 AA (evaluation must include disabled participants or rigorous proxy testing)
+> **Staff reference**: Sample data + completed pilot pack available in the [solution repository](../../resources/code-resources.md#week-9).
+By the end of this session, you will have:
+- Conducted 4 peer pilots following ethical protocol
+- Collected quantitative data (time-on-task, errors, SUS) and qualitative observations
+- Taken observer notes (quotes, errors, time-on-task)
+- Debriefed with participants and synthesised findings
+- Documented findings with evidence chains (raw data → issue → backlog item)
+- Assembled draft Task 1 evidence pack
+
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO6**: Apply iterative design — evidenced by pilot data → findings synthesis
+- **LO8**: Design and execute evaluation — evidenced by 4 pilot sessions + data
+- **LO11**: Collaborate in teams — evidenced by peer pilot facilitation + observer role
+- **LO12**: Demonstrate professionalism — evidenced by consent adherence + respectful facilitation
 
 ---
 
@@ -851,7 +853,7 @@ Next week:
 - **Lab 2**: Implement Priority 1-2 fixes, re-verify accessibility, update backlog, prepare Task 2 evidence pack
 
 **Before Week 10**:
-- Review `../../references/evaluation-metrics-quickref.md` for analysis formulas
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) for analysis formulas
 - Refresh WCAG 2.2 guidelines for fixes (3.3.1, 4.1.3)
 - Think about trade-offs: which fixes are quick wins vs major refactors?
 
@@ -861,7 +863,7 @@ Next week:
 
 ### Essential
 - Review Week 9 Lab 1 (evaluation planning) for context
-- `../../references/evaluation-metrics-quickref.md` — Median, MAD, error rate formulas
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) — Median, MAD, error rate formulas
 - [GOV.UK: Analysing user research](https://www.gov.uk/service-manual/user-research/analyse-a-research-session)
 
 ### HCI Evaluation
@@ -874,7 +876,7 @@ Next week:
 - [GOV.UK: Analysing qualitative data](https://www.gov.uk/service-manual/user-research/analyse-a-research-session)
 
 ### Ethics
-- Review `../../references/consent-pii-faq.md`
+- Review `references/consent-pii-faq.md`
 - [BPS Code of Ethics](https://www.bps.org.uk/guideline/code-ethics-and-conduct)
 
 ---

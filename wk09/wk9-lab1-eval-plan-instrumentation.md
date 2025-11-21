@@ -1,28 +1,22 @@
 # Week 9 • Lab 1 — Evaluation Plan, Metrics Schema, and Instrumentation
 
-<div class="badges">
-  <span class="badge lo">LO1</span>
-  <span class="badge lo">LO3</span>
-  <span class="badge lo">LO4</span>
-  <span class="badge lo">LO5</span>
-  <span class="badge lo">LO6</span>
-  <span class="badge lo">LO8</span>
-  <span class="badge acm">HCI-Evaluation</span>
-  <span class="badge acm">SEP</span>
-  <span class="badge wcag">WCAG 2.2 AA</span>
-</div>
+![COMP2850](https://img.shields.io/badge/COMP2850-HCI-blue)
+![Week 9](https://img.shields.io/badge/Week-9-orange)
+![Lab 1](https://img.shields.io/badge/Lab-1-green)
+![Status](https://img.shields.io/badge/Status-Draft-yellow)
 
-> **Terminology Note**: Avoid "user." Prefer **person**, **participant**, **peer**, **pilot**, **customer**.
+
 
 ---
 
 ## Before Lab: Required Reading (20 mins)
 
-📖 **Essential**:
+📖 **Essential**
+- Pull Week 9 starter repo branch (baseline instrumentation stubs):
 - [Nielsen Norman Group: How to Conduct a Usability Test](https://www.nngroup.com/articles/usability-testing-101/)
 - [W3C: Measuring Accessibility](https://www.w3.org/WAI/test-evaluate/metrics/)
-- Review `../../references/evaluation-metrics-quickref.md`
-- Review `../../references/consent-pii-faq.md`
+- Review [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
+- Review [Consent and PII FAQ](../references/consent-pii-faq.md)
 
 📖 **Contextual**:
 - [hypermedia.systems: Instrumentation](https://hypermedia.systems/) (optional chapter if available)
@@ -49,17 +43,24 @@ Weeks 6–8 built a functional, accessible task list prototype. **Now the critic
 
 ---
 
-## Learning Outcomes
+## Learning Focus
 
-By end of lab:
-1. **Define** evaluation tasks with clear success criteria (LO3, LO8)
-2. **Select** appropriate quantitative and qualitative metrics (LO4)
-3. **Write** an ethical, repeatable protocol for peer pilots (LO1, LO3)
-4. **Implement** server-side instrumentation to log events (LO5, LO6)
-5. **Verify** instrumentation captures data correctly for JS-on and JS-off paths (LO6)
+### Lab Objectives
 
-Maps to ACM: HCI-Evaluation (quantitative + qualitative methods), SEP (professional ethics)
-Maps to WCAG: 2.2 AA (evaluation must include accessibility testing)
+> **Staff reference**: Full instrumentation implementation lives in the [solution repository](../../resources/code-resources.md#week-9).
+By the end of this session, you will have:
+- Designed task-based evaluation protocol with 3+ tasks and clear success criteria
+- Defined metrics (time-on-task, errors, SUS, confidence)
+- Written an ethical, repeatable protocol for peer pilots
+- Instrumented codebase to capture metrics (server-side logging)
+- Verified instrumentation captures data correctly for JS-on and JS-off paths
+
+### Learning Outcomes Addressed
+This lab contributes to the following module Learning Outcomes ([full definitions](../references/learning-outcomes.md)):
+
+- **LO1**: Differentiate people-centred methods — evidenced by method selection rationale
+- **LO8**: Design and execute evaluation — evidenced by protocol + metrics + instrumentation
+- **LO13**: Integrate HCI with SE — evidenced by server-side instrumentation code
 
 ---
 
@@ -208,8 +209,8 @@ Maps to WCAG: 2.2 AA (evaluation must include accessibility testing)
 >
 > **UK context**: Data Protection Act 2018 + UK GDPR require **lawful basis** for processing. Low-risk peer studies at universities typically use "legitimate interest" or "consent" basis. **Must document** in protocol.
 >
-> 🔗 Review `../../references/consent-pii-faq.md` for full guidance
-> 🔗 [ICO: Privacy by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-re../../references/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
+> 🔗 Review [Consent and PII FAQ](../references/consent-pii-faq.md) for full guidance
+> 🔗 [ICO: Privacy by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
 
 ### Median vs Mean
 
@@ -449,7 +450,7 @@ Adjust wording if anything is ambiguous.
 ```markdown
 # Metrics Definitions — Week 9
 
-Reference: `../../references/evaluation-metrics-quickref.md`
+Reference: [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md)
 
 ---
 
@@ -937,7 +938,7 @@ Confidence ratings (1–5):
 ### Screen Reader Session
 - Participant uses NVDA (Windows) or Orca (Linux)
 - Allow 2× time for navigation
-- Note announcements, label quality, live region behavior
+- Note announcements, label quality, live region behaviour
 - Capture SR output in notes (verbatim if possible)
 
 ### No-JS Session
@@ -1272,6 +1273,16 @@ post("/tasks") {
 - `POST /tasks/{id}/edit` with `T2_edit`
 - `DELETE /tasks/{id}` with `T4_delete`
 
+**Note on task codes**:
+- **Evaluation tasks** (T1-T4): These match the tasks defined in your evaluation protocol
+  - `T1_filter` — Search and filter the task list
+  - `T2_edit` — Edit or toggle task status
+  - `T3_add` — Add a new task
+  - `T4_delete` — Delete a task
+- **Baseline logging** (optional): You may also log general interactions not part of the evaluation
+  - `T0_list` — General task list view (not timed in evaluation)
+  - Helps distinguish evaluation sessions from general usage analytics
+
 ✋ **Stop and check**:
 - [ ] Logger.kt compiles and creates metrics.csv
 - [ ] Timing.kt provides timed{} helper
@@ -1408,8 +1419,8 @@ Next session (Lab 2):
 ## Further Reading & Resources
 
 ### Essential
-- `../../references/evaluation-metrics-quickref.md` — Median, MAD, error rate calculations
-- `../../references/consent-pii-faq.md` — PII definitions, opt-out procedures
+- [Evaluation Metrics Quick Reference](../references/evaluation-metrics-quickref.md) — Median, MAD, error rate calculations
+- [Consent and PII FAQ](../references/consent-pii-faq.md) — PII definitions, opt-out procedures
 - [Nielsen: How Many Test Users?](https://www.nngroup.com/articles/how-many-test-users/) — 5 users find 85% of issues
 
 ### HCI Evaluation Methods
@@ -1418,7 +1429,7 @@ Next session (Lab 2):
 - [Measuring UX](https://measuringux.com/) — Practical guide to quantitative UX
 
 ### Ethics & Privacy
-- [ICO: Data Protection by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-re../../references/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
+- [ICO: Data Protection by Design](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/accountability-and-governance/data-protection-by-design-and-default/)
 - [BPS Code of Ethics](https://www.bps.org.uk/guideline/code-ethics-and-conduct) — UK professional standards for research
 - [University of Leeds Research Ethics](https://researchsupport.leeds.ac.uk/research-ethics/) — Institutional policy
 
