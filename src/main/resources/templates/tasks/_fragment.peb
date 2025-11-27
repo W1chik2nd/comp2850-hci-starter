@@ -1,0 +1,13 @@
+{# Adapter: Ensure 'page' object exists for backward compatibility #}
+{% if page is null %}
+  {% set page = {"items": tasks, "totalItems": tasks | length} %}
+{% endif %}
+
+<section aria-labelledby="list-heading">
+  <h2 id="list-heading">Current tasks ({{ page.totalItems }})</h2>
+  {# Minor Issue: Image without alt text for Week 7 Lab 2 discovery #}
+  <img src="/static/img/icon.png" width="16" height="16">
+  
+  {% include "tasks/_list.peb" %}
+  {% include "tasks/_pager.peb" %}
+</section>

@@ -1,0 +1,16 @@
+<ul id="task-list" aria-describedby="result-count">
+  {% if page.items is empty %}
+    <li id="no-tasks">No tasks yet. Add one above!</li>
+  {% else %}
+    {% for task in page.items %}
+      {% if editingId and editingId == task.id %}
+        {% include "tasks/_edit.peb" with {"task": task, "error": errorMessage} %}
+      {% else %}
+        {% include "tasks/_item.peb" with {"task": task} %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</ul>
+<p id="result-count" class="visually-hidden">
+  Showing {{ page.items|length }} of {{ page.totalItems }} tasks{% if query %} matching "{{ query }}"{% endif %}
+</p>

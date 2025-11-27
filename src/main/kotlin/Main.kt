@@ -10,7 +10,9 @@ import io.ktor.server.response.*
 import io.pebbletemplates.pebble.PebbleEngine
 import routes.taskRoutes
 import routes.configureHealthCheck
+import storage.TaskStore
 import utils.SessionData
+import utils.PebbleEngineKey
 import java.io.StringWriter
 import io.ktor.util.*
 
@@ -115,69 +117,6 @@ fun Application.configureTemplating() {
 }
 
 /**
- * AttributeKey for storing Pebble engine instance.
- */
-val PebbleEngineKey = AttributeKey<PebbleEngine>("PebbleEngine")
-
-/**
- * Render a Pebble template to HTML string.
- *
- * **Usage**:
- * ```kotlin
- * val html = call.renderTemplate("tasks/index.peb", mapOf("tasks" to taskList))
- * call.respondText(html, ContentType.Text.Html)
- * ```
- *
- * **Context enrichment**:
- * - Automatically adds `sessionId` from session
- * - Automatically adds `isHtmx` flag (true if HX-Request header present)
- *
- * @param templateName Template path relative to resources/templates/
- * @param context Data to pass to template (map of variable names to values)
- * @return Rendered HTML string
- */
-suspend fun ApplicationCall.renderTemplate(
-    templateName: String,
-    context: Map<String, Any> = emptyMap(),
-): String {
-    val engine = application.attributes[PebbleEngineKey]
-    val writer = StringWriter()
-    val template = engine.getTemplate(templateName)
-
-    // Add global context available to all templates
-    val sessionData = sessions.get<SessionData>()
-    val enrichedContext =
-        context +
-            mapOf(
-                "sessionId" to (sessionData?.id ?: "anonymous"),
-                "isHtmx" to isHtmxRequest(),
-            )
-
-    template.evaluate(writer, enrichedContext)
-    return writer.toString()
-}
-
-/**
- * Check if request is from HTMX (progressive enhancement mode).
- *
- * **HTMX detection**:
- * - HTMX adds `HX-Request: true` header to all AJAX requests
- * - Use this to return fragments vs full pages
- *
- * **Pattern**:
- * ```kotlin
- * if (call.isHtmxRequest()) {
- *     // Return partial HTML fragment
- *     call.respondText(render("tasks/_list.peb"))
- * } else {
- *     // Traditional redirect (POST-Redirect-GET)
- *     call.respondRedirect("/tasks")
- * }
- * ```
- */
-fun ApplicationCall.isHtmxRequest(): Boolean = request.headers["HX-Request"] == "true"
-
-/**
  * Configure session handling (privacy-safe anonymous IDs).
  *
  * **Privacy notes**:
@@ -214,7 +153,8 @@ fun Application.configureRouting() {
         configureHealthCheck()
 
         // Task management routes (main feature)
-        // TODO: Week 6 Lab 1 - Implement taskRoutes()
-        taskRoutes()
+        // Shared TaskStore instance
+        val taskStore = TaskStore()
+        taskRoutes(taskStore)
     }
 }
