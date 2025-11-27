@@ -28,15 +28,18 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
      * Returns full page (no HTMX differentiation in Week 6)
      */
     get("/tasks") {
+        val error = call.request.queryParameters["error"]
+        val msg = call.request.queryParameters["msg"]
         val query = call.request.queryParameters["q"].orEmpty()
         val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
-        val tasks = store.search(query)
-        val data = Page.paginate(tasks.map { it.toPebbleContext() }, page, pageSize = 10)
+        val data = paginateTasks(store, query, page)
 
         val model = mapOf(
             "title" to "Tasks",
             "page" to data,
-            "query" to query
+            "query" to query,
+            "error" to error,
+            "msg" to msg
         )
         val html = call.renderTemplate("tasks/index.peb", model)
         call.respondText(html, ContentType.Text.Html)
@@ -49,8 +52,7 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
     get("/tasks/fragment") {
         val query = call.request.queryParameters["q"].orEmpty()
         val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
-        val tasks = store.search(query)
-        val data = Page.paginate(tasks.map { it.toPebbleContext() }, page, pageSize = 10)
+        val data = paginateTasks(store, query, page)
 
         val model = mapOf(
             "page" to data,
@@ -68,17 +70,24 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
     post("/tasks") {
         val title = call.receiveParameters()["title"].orEmpty().trim()
 
+        // Validation
         if (title.isBlank()) {
-            // Validation error handling
             if (call.isHtmxRequest()) {
-                val error = """<div id="status" hx-swap-oob="true" role="alert" aria-live="assertive">
-                    Title is required. Please enter at least one character.
-                </div>"""
-                return@post call.respondText(error, ContentType.Text.Html, HttpStatusCode.BadRequest)
+                val status = """<div id="status" hx-swap-oob="true" role="alert" aria-live="assertive" class="error-summary">Title is required.</div>"""
+                return@post call.respondText(status, ContentType.Text.Html, HttpStatusCode.OK)
             } else {
-                // No-JS: redirect back (could add error query param)
-                call.response.headers.append("Location", "/tasks")
-                return@post call.respond(HttpStatusCode.SeeOther)
+                // No-JS: redirect with error query param
+                return@post call.respondRedirect("/tasks?error=title")
+            }
+        }
+
+        if (title.length > 200) {
+            if (call.isHtmxRequest()) {
+                val status = """<div id="status" hx-swap-oob="true" role="alert" aria-live="assertive" class="error-summary">Title too long (max 200 chars).</div>"""
+                return@post call.respondText(status, ContentType.Text.Html, HttpStatusCode.OK)
+            } else {
+                // No-JS: redirect with error query param
+                return@post call.respondRedirect("/tasks?error=title&msg=too_long")
             }
         }
 
@@ -101,42 +110,54 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
         }
 
         // No-JS: POST-Redirect-GET pattern (303 See Other)
-        call.response.headers.append("Location", "/tasks")
-        call.respond(HttpStatusCode.SeeOther)
+        call.respondRedirect("/tasks")
     }
 
     /**
-     * POST /tasks/{id}/delete - Delete task
-     * Dual-mode: HTMX empty response or PRG redirect
+     * DELETE /tasks/{id} - HTMX delete
+     * Handles HTMX request to delete a task and update UI via OOB swaps
      */
-    post("/tasks/{id}/delete") {
+    delete("/tasks/{id}") {
         val id = call.parameters["id"]
+        val task = id?.let { store.getById(it) }
         val removed = id?.let { store.delete(it) } ?: false
 
-        if (call.isHtmxRequest()) {
-            val message = if (removed) "Task deleted." else "Could not delete task."
-
+        if (removed) {
+            val message = "Deleted \"${task?.title ?: "task"}\"."
+            
             // Update task count using OOB swap
             val remainingTasks = store.getAll()
-
+            
             // Build response: OOB swaps first, then main content
             val status = """<div id="status" role="status" aria-live="polite" aria-atomic="true" hx-swap-oob="true">$message</div>"""
             val countUpdate = """<h2 id="list-heading" hx-swap-oob="true">Current tasks (${remainingTasks.size})</h2>"""
             
-            // If no tasks remaining, show empty state (replace entire list to be safe)
+            // If no tasks remaining, show empty state
             val listUpdate = if (remainingTasks.isEmpty()) {
                  """<ul id="task-list" hx-swap-oob="true"><li id="no-tasks">No tasks yet. Add one above!</li></ul>"""
             } else {
                 ""
             }
-
+            
             // Main content: empty string for outerHTML swap removes the <li>
-            // Use comment to ensure response is not completely empty
-            val mainContent = if (removed) "<!-- deleted -->" else "<span>Could not delete task.</span>"
-
-            return@post call.respondText(status + countUpdate + listUpdate + mainContent, ContentType.Text.Html)
+            // Using comment to avoid empty body issues
+            val mainContent = "<!-- deleted -->"
+            
+            call.respondText(status + countUpdate + listUpdate + mainContent, ContentType.Text.Html)
+        } else {
+             call.respond(HttpStatusCode.NotFound, "Task not found")
         }
+    }
 
+    /**
+     * POST /tasks/{id}/delete - Delete task (No-JS fallback)
+     * Dual-mode: HTMX empty response or PRG redirect
+     */
+    post("/tasks/{id}/delete") {
+        val id = call.parameters["id"]
+        // If HTMX somehow hits this route (e.g. old cached JS), handle it gracefully or just fallback
+        val removed = id?.let { store.delete(it) } ?: false
+        
         // No-JS: POST-Redirect-GET pattern (303 See Other)
         call.response.headers.append("Location", "/tasks")
         call.respond(HttpStatusCode.SeeOther)
@@ -233,4 +254,17 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
         val html = call.renderTemplate("tasks/_item.peb", mapOf("task" to task))
         call.respondText(html, ContentType.Text.Html)
     }
+}
+
+/**
+ * Helper to paginate and map tasks for template rendering.
+ * Reduces code duplication in validation and filter routes.
+ */
+private fun paginateTasks(
+    store: TaskStore,
+    query: String,
+    page: Int
+): Page<Map<String, Any>> {
+    val tasks = store.search(query).map { it.toPebbleContext() }
+    return Page.paginate(tasks, currentPage = page, pageSize = 10)
 }

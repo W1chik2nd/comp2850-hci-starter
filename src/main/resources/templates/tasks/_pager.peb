@@ -1,9 +1,9 @@
 {% if page.totalPages > 1 %}
   <nav aria-label="Pagination" class="pagination" style="margin-top: 1rem;">
     <div role="group">
-      {% if page.page > 1 %}
-        <a href="/tasks?q={{ query }}&page={{ page.page - 1 }}"
-           hx-get="/tasks/fragment?q={{ query }}&page={{ page.page - 1 }}"
+      {% if page.hasPrevious %}
+        <a href="/tasks?q={{ query }}&page={{ page.previousPage }}"
+           hx-get="/tasks/fragment?q={{ query }}&page={{ page.previousPage }}"
            hx-target="#task-area"
            hx-push-url="true"
            role="button"
@@ -13,12 +13,12 @@
       {% endif %}
 
       <button disabled class="outline" style="border: none; background: transparent; color: var(--pico-color);">
-        Page {{ page.page }} of {{ page.totalPages }}
+        Page {{ page.currentPage }} of {{ page.totalPages }}
       </button>
 
-      {% if page.page < page.totalPages %}
-        <a href="/tasks?q={{ query }}&page={{ page.page + 1 }}"
-           hx-get="/tasks/fragment?q={{ query }}&page={{ page.page + 1 }}"
+      {% if page.hasNext %}
+        <a href="/tasks?q={{ query }}&page={{ page.nextPage }}"
+           hx-get="/tasks/fragment?q={{ query }}&page={{ page.nextPage }}"
            hx-target="#task-area"
            hx-push-url="true"
            role="button"
