@@ -86,11 +86,38 @@ object TaskRepository {
         return removed
     }
 
-    // TODO: Week 7 Lab 1 Activity 2 Step 6
-    // Add find() and update() methods here
-    // Follow instructions in mdbook to implement:
-    // - fun find(id: Int): Task?
-    // - fun update(task: Task)
+    /**
+     * Find a task by ID.
+     * Returns null if task not found.
+     */
+    fun find(id: Int): Task? = tasks.find { it.id == id }
+
+    /**
+     * Get a task by ID (alias for find, for compatibility).
+     * Returns null if task not found.
+     */
+    fun get(id: Int): Task? = find(id)
+
+    /**
+     * Update an existing task.
+     * Returns the updated task, or null if task not found.
+     */
+    fun update(id: Int, newTitle: String): Task? {
+        val task = find(id) ?: return null
+        task.title = newTitle
+        persist()
+        return task
+    }
+
+    /**
+     * Update a task object (alternative method signature).
+     */
+    fun update(task: Task): Boolean {
+        val existing = find(task.id) ?: return false
+        existing.title = task.title
+        persist()
+        return true
+    }
 
     private fun persist() {
         file.writeText("id,title\n" + tasks.joinToString("\n") { "${it.id},${it.title}" })
