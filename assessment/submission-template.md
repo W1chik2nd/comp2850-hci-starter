@@ -78,10 +78,10 @@ Navigate to the delete button and remove the task
 "Thank you for participating in my HCI evaluation. This will take about 15 minutes. I'm testing my task management interface, not you. There are no right or wrong answers."
 
 **Rights**:
-- [√] "Your participation is voluntary. You can stop at any time without giving a reason."
-- [√] "Your data will be anonymous. I'll use a code (like P1) instead of your name."
-- [√] "I may take screenshots and notes. I'll remove any identifying information."
-- [√] "Do you consent to participate?" [Wait for verbal yes]
+- [ ] "Your participation is voluntary. You can stop at any time without giving a reason."
+- [ ] "Your data will be anonymous. I'll use a code (like P1) instead of your name."
+- [ ] "I may take screenshots and notes. I'll remove any identifying information."
+- [ ] "Do you consent to participate?" [Wait for verbal yes]
 
 **Recorded consent timestamp**: [e.g., "P1 consented 22/11/2025 14:05"]
 P1 consented 28/11/2025 22:50
