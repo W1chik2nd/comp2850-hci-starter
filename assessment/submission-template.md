@@ -3,7 +3,7 @@
 > **📥 Download this template**: [COMP2850-submission-template.md](/downloads/COMP2850-submission-template.md)
 > Right-click the link above and select "Save link as..." to download the template file.
 
-**Student**: [Your name and student ID]
+**Student**: Weize Zheng 201776501
 **Submission date**: [DD/MM/YYYY]
 **Academic Year**: 2025-26
 
@@ -11,13 +11,13 @@
 
 ## Privacy & Ethics Statement
 
-- [ ] I confirm all participant data is anonymous (session IDs use P1_xxxx format, not real names)
-- [ ] I confirm all screenshots are cropped/blurred to remove PII (no names, emails, student IDs visible)
-- [ ] I confirm all participants gave informed consent
-- [ ] I confirm this work is my own (AI tools used for code assistance are cited below)
+- [√] I confirm all participant data is anonymous (session IDs use P1_xxxx format, not real names)
+- [√] I confirm all screenshots are cropped/blurred to remove PII (no names, emails, student IDs visible)
+- [√] I confirm all participants gave informed consent
+- [√] I confirm this work is my own (AI tools used for code assistance are cited below)
 
 **AI tools used** (if any): [e.g., "Copilot for route handler boilerplate (lines 45-67 in diffs)"]
-
+    Use ChatGPT for data organization and calculation
 ---
 
 ## 1. Protocol & Tasks
@@ -26,37 +26,45 @@
 
 **Week 6 Job Story #1**:
 > [Paste your Week 6 job story here - the one that informed your first task]
+    When I add a new task to my list
+    I want immediate visual feedback that the task was successfully added
+    So I don't have to scroll down or search to verify it's there
+    Because uncertainty about whether an action worked causes anxiety and breaks my flow
 
 **How Task 1 tests this**:
 [1 sentence explaining link]
-
+Task 1 requires the participant to add a new task, which directly tests whether the interface provides sufficient feedback to satisfy the user's need for confirmation.
 ---
 
 ### Evaluation Tasks (4-5 tasks)
 
-#### Task 1 (T1): [Task Name]
+#### Task 1 (T1): Search & Filter Tasks
 
-- **Scenario**: [Brief context - what person needs to do]
-- **Action**: [Specific instruction - what to tell participant]
-- **Success**: [Observable outcome - how you know it worked]
-- **Target time**: [e.g., <10 seconds]
-- **Linked to**: [Week 6 Job Story #X]
+- **Scenario**: A user wants to quickly locate a specific task in a long list using searching bar.
+- **Action**: Ask the participant to type “report” in the search box and verbally say how many tasks remain visible.
+- **Success**: Only tasks containing the word “report” remain visible, and the participant states the correct count.
+- **Target time**: < 15 seconds
+- **Linked to**: Week 8 Job Story — “When I have many tasks, I want to filter quickly so I can find what I need without scrolling.”
 
-#### Task 2 (T2): [Task Name]
+#### Task 2 (T2): Edit a Task Title Inline
 
-- **Scenario**:
-- **Action**:
-- **Success**:
-- **Target time**:
-- **Linked to**:
+- **Scenario**:A user notices a mistake in a task title and wants to correct it without navigating to a new page.
+- **Action**:Ask the participant to click the small “edit” button next to a task, change its title to “Submit invoices by Friday”, and save.
+- **Success**:The title updates instantly (inline) without reloading the page, and the new text appears correctly.
+- **Target time**: < 20 seconds
+- **Linked to**:Week 7 Job Story — “When I spot an error in a task, I want to edit it quickly in place so I don’t lose focus.”
 
-#### Task 3 (T3): [Task Name]
+#### Task 3 (T3): Complete Add/Delete Task Using Keyboard Only
 
-- **Scenario**:
-- **Action**:
-- **Success**:
-- **Target time**:
-- **Linked to**:
+- **Scenario**:A user cannot use a mouse and relies solely on the keyboard for navigation.
+- **Action**:Ask the participant to:
+Use Tab / Shift+Tab to reach the “Add task” input
+Add a new task titled “Buy oat milk”
+Navigate to the delete button and remove the task
+(No mouse allowed)
+- **Success**:The participant completes both actions with clear focus indicators and no mouse interaction.
+- **Target time**: < 1 minute
+- **Linked to**:Week 6, Week 9 Job story and Accessibility Lab
 
 [Add Tasks 4-5 as needed]
 
@@ -68,12 +76,16 @@
 "Thank you for participating in my HCI evaluation. This will take about 15 minutes. I'm testing my task management interface, not you. There are no right or wrong answers."
 
 **Rights**:
-- [ ] "Your participation is voluntary. You can stop at any time without giving a reason."
-- [ ] "Your data will be anonymous. I'll use a code (like P1) instead of your name."
-- [ ] "I may take screenshots and notes. I'll remove any identifying information."
-- [ ] "Do you consent to participate?" [Wait for verbal yes]
+- [√] "Your participation is voluntary. You can stop at any time without giving a reason."
+- [√] "Your data will be anonymous. I'll use a code (like P1) instead of your name."
+- [√] "I may take screenshots and notes. I'll remove any identifying information."
+- [√] "Do you consent to participate?" [Wait for verbal yes]
 
 **Recorded consent timestamp**: [e.g., "P1 consented 22/11/2025 14:05"]
+P1 consented 28/11/2025 22:50
+P1 consented 28/11/2025 23:01
+P1 consented 28/11/2025 23:07
+P1 consented 28/11/2025 23:15
 
 ---
 
@@ -83,18 +95,17 @@
 
 | Finding | Data Source | Observation (Quote/Timestamp) | WCAG | Impact (1-5) | Inclusion (1-5) | Effort (1-5) | Priority |
 |---------|-------------|------------------------------|------|--------------|-----------------|--------------|----------|
-| SR errors not announced | metrics.csv L47-49 + P2 notes 14:23 | P2: "I didn't hear any error" | 3.3.1 Level A | 5 | 5 | 3 | 7 |
-| [Your finding 2] | [Link to metrics.csv line OR pilot notes] | [Participant quote + timestamp] | [WCAG criterion] | [1-5] | [1-5] | [1-5] | [Score] |
-| [Your finding 3] | | | | | | | |
-| [Your finding 4] | | | | | | | |
-| [Your finding 5] | | | | | | | |
+| No-JS delete missing confirmation | pilot-notes.md P3 (23:11) | "Deleted task. No confirmation dialog... Task disappeared immediately." | 3.3.4 Error Prevention | 4 | 3 | 3 | 4 |
+| JS-off error requires full reload | metrics.csv L16 + P3 notes | "Redirected to error state. Red box visible." (Full page reload) | 3.3.1 Error Identification | 3 | 2 | 2 | 3 |
+| Filter triggers full reload (JS-on) | metrics.csv L28-29 (P4) | "Unexpected page reload (metrics show off)." (URL changes to ?q=) | Usability (UX) | 3 | 2 | 2 | 3 |
+| Screen Reader status announcements | pilot-notes.md P1 (22:52) | "Live regions announced status updates correctly." (Positive baseline) | 4.1.3 Status Messages | 1 | 5 | 1 | 5 |
 
 **Priority formula**: (Impact + Inclusion) - Effort
 
 **Top 3 priorities for redesign**:
-1. [Finding #X - Priority score Y]
-2. [Finding #X - Priority score Y]
-3. [Finding #X - Priority score Y]
+1. Finding #1: No-JS delete missing confirmation - Priority score 4
+2. Finding #2: JS-off error requires full reload - Priority score 3
+3. Finding #3: Filter triggers full reload (JS-on) - Priority score 3
 
 ---
 
@@ -104,17 +115,47 @@
 
 ```csv
 ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
-2025-11-22T14:18:23.456Z,P1_a7f3,req_001,T1_add,success,,890,200,on
-[Your metrics data here - all rows from Logger.kt output]
+2025-11-27T22:52:22.430237900Z,P1_ylbp,r0038,T1_filter,,success,4,200,on
+2025-11-27T22:53:06.023973900Z,P1_ylbp,r0039,T3_add,,success,1,200,on
+2025-11-27T22:53:18.645634700Z,P1_ylbp,r0040,T2_edit,,success,1,200,on
+2025-11-27T22:53:33.204739Z,P1_ylbp,r0041,T3_add,,success,1,200,on
+2025-11-27T22:53:54.337104700Z,P1_ylbp,r0042,T4_delete,,success,1,200,on
+2025-11-27T23:05:05.711174100Z,P2_k6a5,r0006,T3_add,,success,1,200,on
+2025-11-27T23:05:20.245185500Z,P2_k6a5,r0007,T2_edit,,success,1,200,on
+2025-11-27T23:05:26.864545100Z,P2_k6a5,r0008,T1_filter,,success,9,200,off
+2025-11-27T23:05:29.062386100Z,P2_k6a5,r0009,T4_delete,,success,0,200,off
+2025-11-27T23:05:29.072498500Z,P2_k6a5,r0010,T0_list,,success,7,200,on
+2025-11-27T23:05:44.303757800Z,P2_k6a5,r0011,T4_delete,,success,0,200,on
+2025-11-27T23:05:44.314055900Z,P2_k6a5,r0012,T0_list,,success,7,200,on
+2025-11-27T23:10:08.272278Z,P3_6rxi,r0013,T0_list,,success,6,200,off
+2025-11-27T23:10:20.065458Z,P3_6rxi,r0014,T3_add,,success,1,200,off
+2025-11-27T23:10:20.074742300Z,P3_6rxi,r0015,T0_list,,success,6,200,off
+2025-11-27T23:11:08.469340100Z,P3_6rxi,r0016,T1_filter,,success,8,200,off
+2025-11-27T23:11:25.828881600Z,P3_6rxi,r0017,T3_add,blank_title,validation_error,0,400,off
+2025-11-27T23:11:25.828881600Z,P3_6rxi,r0017,T3_add,,success,1,200,off
+2025-11-27T23:11:25.838266300Z,P3_6rxi,r0018,T0_list,,success,6,200,off
+2025-11-27T23:11:38.433700900Z,P3_6rxi,r0019,T2_edit,,success,0,200,off
+2025-11-27T23:11:38.443249200Z,P3_6rxi,r0020,T0_list,,success,7,200,off
+2025-11-27T23:11:42.072492300Z,P3_6rxi,r0021,T4_delete,,success,0,200,off
+2025-11-27T23:11:42.081730800Z,P3_6rxi,r0022,T0_list,,success,5,200,off
+2025-11-27T23:13:32.926466100Z,P3_6rxi,r0023,T0_list,,success,6,200,off
+2025-11-27T23:16:17.155414400Z,P4_q3v8,r0024,T0_list,,success,8,200,off
+2025-11-27T23:16:26.500103800Z,P4_q3v8,r0025,T3_add,,success,1,200,on
+2025-11-27T23:16:38.664968500Z,P4_q3v8,r0026,T2_edit,,success,1,200,on
+2025-11-27T23:17:04.777404300Z,P4_q3v8,r0027,T4_delete,,success,0,200,on
+2025-11-27T23:17:30.099679200Z,P4_q3v8,r0028,T1_filter,,success,5,200,off
+2025-11-27T23:18:14.820953600Z,P4_q3v8,r0029,T1_filter,,success,5,200,off
+2025-11-27T23:18:53.429071400Z,P4_q3v8,r0030,T3_add,blank_title,validation_error,0,400,on
+2025-11-27T23:18:53.430488300Z,P4_q3v8,r0030,T3_add,,success,1,200,on
 ```
 
 **Participant summary**:
-- **P1**: [Variant - e.g., "Standard mouse + HTMX"]
-- **P2**: [Variant - e.g., "Keyboard-only, HTMX-on"]
-- **P3** (if applicable): [Variant]
-- **P4** (if applicable): [Variant]
+- **P1**: Standard (HTMX, mouse, JS-on)
+- **P2**: keyboard-only, JS-on
+- **P3** (if applicable): No-JS (JS-off)
+- **P4** (if applicable): Standard with Screen Reader
 
-**Total participants**: [n=2, 3, or 4]
+**Total participants**: 4
 
 ---
 
@@ -256,15 +297,21 @@ ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
 
 **Instructions**: Attach pilot notes as separate files (P1-notes.md, P2-notes.md, etc.). Summarize key observations here.
 
-**P1** ([ Variant - e.g., "Standard mouse + HTMX"]):
-- **Key observation 1**: [Quote + timestamp - e.g., "Struggled with filter button (09:47)"]
-- **Key observation 2**: [Quote + timestamp]
+**P1** (Standard Mouse/Trackpad, JS-on):
+- **Key observation 1**: (22:52) "Filtered list. Instant feedback." - Confirmed HTMX performance.
+- **Key observation 2**: (22:53) "Live regions announced status updates correctly." - Confirmed accessibility baseline.
 
-**P2** ([Variant]):
-- **Key observation 1**: [Quote + timestamp]
-- **Key observation 2**: [Quote + timestamp]
+**P2** (Keyboard-only, JS-on):
+- **Key observation 1**: (23:05) "Delete confirmation prevented accidental clicks." - Validated safety features.
+- **Key observation 2**: (23:05) "It feels very fast." - Positive UX feedback on JS mode.
 
-[Repeat for P3, P4 if applicable]
+**P3** (Keyboard-only, JS-off / No-JS):
+- **Key observation 1**: (23:11) "Deleted task. No confirmation dialog... Task disappeared immediately." - **Major Finding**.
+- **Key observation 2**: (Debrief) "The page flashing is noticeable compared to before." - Identified UX degradation in No-JS.
+
+**P4** (Screen Reader NVDA, JS-on):
+- **Key observation 1**: (23:18) Error announcements worked perfectly in HTMX mode ("Title is required" announced).
+- **Key observation 2**: (23:17) Filter triggered unexpected full reload (UX anomaly when pressing Enter).
 
 ---
 

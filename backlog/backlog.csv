@@ -1,1 +1,5 @@
-id,title,story_ref,story_type,need,type,severity,inclusion_risk,evidence,notes,candidate_fix
+id,week,priority,category,description,wcag,status,evidence,mitigation,candidate_fix
+wk9-01,9,medium,ux,"Pressing Enter in filter form triggers full page reload (JS-off mode) instead of HTMX",,"open","data/metrics.csv#P4_q3v8 T1 off; wk09/lab-wk9/research/pilot-notes.md L58","Intercept form submit in JS or add hidden submit button handler to trigger HTMX",true
+wk9-02,9,medium,ux,"Frequent validation errors on Add Task (blank title)",3.3.3,open,"data/metrics.csv#P3_6rxi,P4_q3v8 T3 validation_error; wk09/lab-wk9/research/summary-stats.md Error Rates","Add client-side hints (optional) or improve label instructions",false
+wk9-03,9,low,parity,"No-JS delete action lacks confirmation dialog",3.3.4,open,"wk09/lab-wk9/research/pilot-notes.md L48 (P3); wk08/docs/prototyping-constraints.md","Documented trade-off; consider separate confirm page for No-JS path",false
+wk9-04,9,high,a11y,"No-JS mode full page reloads cause focus loss context",2.4.3,open,"wk09/lab-wk9/research/pilot-notes.md L46 (P3)","Ensure autofocus or URL fragment restores focus to relevant area after reload",true
