@@ -17,7 +17,8 @@
 - [√] I confirm this work is my own (AI tools used for code assistance are cited below)
 
 **AI tools used** (if any): [e.g., "Copilot for route handler boilerplate (lines 45-67 in diffs)"]
-    Use ChatGPT for data organization and calculation
+    
+Use ChatGPT for data organization and calculation
 ---
 
 ## 1. Protocol & Tasks
@@ -31,6 +32,7 @@ So I don't have to scroll down or search to verify it's there
 Because uncertainty about whether an action worked causes anxiety and breaks my flow
 
 **How Task 1 tests this**:
+
 Task 1 requires the participant to add a new task, which directly tests whether the interface provides sufficient feedback to satisfy the user's need for confirmation.
 ---
 
