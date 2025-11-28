@@ -19,6 +19,7 @@
 **AI tools used** (if any): [e.g., "Copilot for route handler boilerplate (lines 45-67 in diffs)"]
     
 Use ChatGPT for data organization and calculation
+
 ---
 
 ## 1. Protocol & Tasks
@@ -34,6 +35,7 @@ Because uncertainty about whether an action worked causes anxiety and breaks my 
 **How Task 1 tests this**:
 
 Task 1 requires the participant to add a new task, which directly tests whether the interface provides sufficient feedback to satisfy the user's need for confirmation.
+
 ---
 
 ### Evaluation Tasks (4-5 tasks)
