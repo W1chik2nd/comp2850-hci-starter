@@ -25,14 +25,12 @@
 ### Link to Needs-Finding (LO2)
 
 **Week 6 Job Story #1**:
-> [Paste your Week 6 job story here - the one that informed your first task]
-    When I add a new task to my list
-    I want immediate visual feedback that the task was successfully added
-    So I don't have to scroll down or search to verify it's there
-    Because uncertainty about whether an action worked causes anxiety and breaks my flow
+When I add a new task to my list
+I want immediate visual feedback that the task was successfully added
+So I don't have to scroll down or search to verify it's there
+Because uncertainty about whether an action worked causes anxiety and breaks my flow
 
 **How Task 1 tests this**:
-[1 sentence explaining link]
 Task 1 requires the participant to add a new task, which directly tests whether the interface provides sufficient feedback to satisfy the user's need for confirmation.
 ---
 
