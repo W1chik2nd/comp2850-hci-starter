@@ -16,7 +16,7 @@
 - [x] I confirm all participants gave informed consent
 - [x] I confirm this work is my own (AI tools used for code assistance are cited below)
 
-**AI tools used** (if any): [e.g., "Copilot for route handler boilerplate (lines 45-67 in diffs)"]
+**AI tools used** (if any):
     
 Use ChatGPT for data organization and calculation
 
@@ -98,7 +98,7 @@ Navigate to the delete button and remove the task
 - [x] "I may take screenshots and notes. I'll remove any identifying information."
 - [x] "Do you consent to participate?" [Wait for verbal yes]
 
-**Recorded consent timestamp**:
+**Recorded consent timestamp**:  
 P1 consented 28/11/2025 22:50  
 P2 consented 28/11/2025 23:01  
 P3 consented 28/11/2025 23:07  
@@ -186,7 +186,6 @@ ts_iso,session_id,request_id,task_code,step,outcome,ms,http_status,js_mode
 
 **Before** (src/main/kotlin/com/example/plugins/Routing.kt):
 ```kotlin
-// ❌ Problem code: Immediate deletion without safety check
 post("/tasks/{id}/delete") {
     val id = call.parameters["id"] ?: return@post call.respond(HttpStatusCode.BadRequest)
     TaskRepository.remove(id)
@@ -196,7 +195,6 @@ post("/tasks/{id}/delete") {
 
 **After** (src/main/kotlin/com/example/plugins/Routing.kt):
 ```kotlin
-// ✅ Fixed code: Interstitial confirmation page pattern
 post("/tasks/{id}/delete") {
     val id = call.parameters["id"] ?: return@post call.respond(HttpStatusCode.BadRequest)
     val confirmed = call.parameters["confirmed"]?.toBoolean() ?: false
@@ -227,17 +225,14 @@ post("/tasks/{id}/delete") {
 
 **Before** (src/main/resources/static/style.css):
 ```css
-/* ❌ Problem: Global override forces dark text on all buttons */
 button[type="submit"],
 button {
   color: #495057 !important; /* Dark grey */
 }
-/* Result: Dark text on dark red background = 2:1 contrast (Fail) */
 ```
 
 **After** (src/main/resources/static/style.css):
 ```css
-/* ✅ Fixed code: Specific override for danger buttons */
 .button.is-danger {
   background-color: #d32f2f !important;
   color: #ffffff !important; /* White text = 7:1 contrast (Pass) */
@@ -259,7 +254,6 @@ button {
 
 **Before** (src/main/resources/templates/tasks/index.peb):
 ```html
-<!-- ❌ Problem: Complex trigger on form caused fallback to native submit -->
 <form action="/tasks" method="get"
       hx-get="/tasks/fragment"
       hx-target="#task-area"
@@ -271,7 +265,6 @@ button {
 
 **After** (src/main/resources/templates/tasks/index.peb):
 ```html
-<!-- ✅ Fixed code: Moved keyup trigger to input, form handles submit naturally -->
 <form action="/tasks" method="get"
       hx-get="/tasks/fragment"
       hx-target="#task-area"
