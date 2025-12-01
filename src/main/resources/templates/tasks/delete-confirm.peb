@@ -1,0 +1,27 @@
+{% extends "_layout/base.peb" %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin-top: 2rem;">
+    <article class="message is-warning">
+        <div class="message-header">
+            <p>Confirm Deletion</p>
+        </div>
+        <div class="message-body">
+            <p>Are you sure you want to delete the task: <strong>{{ task.title }}</strong>?</p>
+            <p>This action cannot be undone.</p>
+            
+            <div class="buttons" style="margin-top: 1.5rem;">
+                <form action="/tasks/{{ task.id }}/delete" method="post" style="display: inline;">
+                    <input type="hidden" name="confirmed" value="true">
+                    <button type="submit" class="button is-danger" autofocus>
+                        Yes, Delete it
+                    </button>
+                </form>
+                
+                <a href="/tasks" class="button">Cancel</a>
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}
+

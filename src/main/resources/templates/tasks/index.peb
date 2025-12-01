@@ -44,11 +44,14 @@
 <form action="/tasks" method="get"
       hx-get="/tasks/fragment"
       hx-target="#task-area"
-      hx-trigger="keyup changed delay:300ms, submit from:closest(form)"
       hx-push-url="true">
   <label for="q">Filter tasks</label>
   <input id="q" name="q" value="{{ query|default('') }}" type="search"
-         aria-describedby="q-hint">
+         aria-describedby="q-hint"
+         hx-get="/tasks/fragment"
+         hx-target="#task-area"
+         hx-trigger="keyup changed delay:300ms, search"
+         hx-push-url="true">
   <small id="q-hint">Type to filter; works without JavaScript.</small>
   <button type="submit">Apply</button>
 </form>

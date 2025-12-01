@@ -37,9 +37,12 @@
 }
 
 /* Custom CSS for accessibility contrast fixes */
-button[type="submit"],
-button {
-  color: #495057 !important; /* 7:1 contrast (AAA) */
+/* Force white text on all primary/submit buttons for contrast */
+/* Copilot/AI suggested fix: Use more specific selector to override Pico defaults */
+form button[type="submit"],
+.button.is-primary,
+.button.is-danger {
+  color: #ffffff !important; 
 }
 
 /* High contrast style for secondary buttons (Cancel) */
@@ -75,3 +78,13 @@ input[aria-invalid="true"] {
   border-color: #d32f2f;
 }
 
+/* Fix 2: Ensure sufficient contrast for danger buttons (Pico CSS override) */
+button.is-danger {
+  --pico-background-color: #d32f2f;
+  --pico-border-color: #d32f2f;
+  --pico-color: #ffffff; /* Force white text */
+  
+  background-color: var(--pico-background-color) !important;
+  border-color: var(--pico-border-color) !important;
+  color: var(--pico-color) !important;
+}

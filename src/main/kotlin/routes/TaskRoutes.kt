@@ -170,10 +170,26 @@ fun Route.taskRoutes(store: TaskStore = TaskStore()) {
 
         call.timed(taskCode = "T4_delete", jsMode = jsMode) {
             val id = call.parameters["id"]
-            val removed = id?.let { store.delete(it) } ?: false
+            val confirmed = call.parameters["confirmed"] == "true"
             
-            call.response.headers.append("Location", "/tasks")
-            call.respond(HttpStatusCode.SeeOther)
+            if (!confirmed) {
+                // Step 1: Show confirmation page
+                val task = id?.let { store.getById(it) }
+                if (task == null) {
+                    call.respond(HttpStatusCode.NotFound, "Task not found")
+                } else {
+                    val html = call.renderTemplate("tasks/delete-confirm.peb", mapOf("task" to task))
+                    call.respondText(html, ContentType.Text.Html)
+                }
+            } else {
+                // Step 2: Actually delete
+                val removed = id?.let { store.delete(it) } ?: false
+                call.respondText(
+                    "<html><head><meta http-equiv='refresh' content='0;url=/tasks'></head><body>Redirecting...</body></html>",
+                    ContentType.Text.Html,
+                    HttpStatusCode.SeeOther
+                )
+            }
         }
     }
 
