@@ -379,18 +379,22 @@ Re-pilot sample size (n=1) is minimal due to time constraints. While the confirm
 **P1** (Standard Mouse/Trackpad, JS-on):
 - **Key observation 1**: (22:52) "Filtered list. Instant feedback." - Confirmed HTMX performance.
 - **Key observation 2**: (22:53) "Live regions announced status updates correctly." - Confirmed accessibility baseline.
+- **Confidence**: 5/5
 
 **P2** (Keyboard-only, JS-on):
 - **Key observation 1**: (23:05) "Delete confirmation prevented accidental clicks." - Validated safety features.
-- **Key observation 2**: (23:05) "It feels very fast." - Positive UX feedback on JS mode.
+- **Key observation 2**: "The button text is a bit hard to read." - Confirmed contrast issue (Finding #2).
+- **Confidence**: 4/5
 
 **P3** (Keyboard-only, JS-off / No-JS):
 - **Key observation 1**: (23:11) "Deleted task. No confirmation dialog... Task disappeared immediately." - **Major Finding**.
 - **Key observation 2**: (Debrief) "The page flashing is noticeable compared to before." - Identified UX degradation in No-JS.
+- **Confidence**: 3/5 (Unsure if actions succeeded)
 
 **P4** (Screen Reader NVDA, JS-on):
 - **Key observation 1**: (23:18) Error announcements worked perfectly in HTMX mode ("Title is required" announced).
 - **Key observation 2**: (23:17) Filter triggered unexpected full reload (UX anomaly when pressing Enter).
+- **Confidence**: 4/5 (Generally good, confused by reload)
 
 ---
 

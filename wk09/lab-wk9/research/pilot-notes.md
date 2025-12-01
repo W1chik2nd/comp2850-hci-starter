@@ -11,6 +11,7 @@
 | 22:53 | T2 | Edited task inline. Focus remained on item. | a11y-focus |
 | 22:53 | T4 | Deleted task. Confirm dialog appeared. Status message announced. | a11y-live |
 
+**Confidence**: 5/5 (Task completed smoothly)
 **Debrief notes**:
 - Smooth experience with keyboard.
 - Live regions announced status updates correctly.
@@ -28,9 +29,11 @@
 | 23:05 | T1 | Used filter. List updated dynamically. | ux-dynamic |
 | 23:05 | T4 | Deleted two tasks in succession. Confirmation dialogs worked. | ux-safety |
 
+**Confidence**: 5/5 (Very confident)
 **Debrief notes**:
 - "It feels very fast."
 - Delete confirmation prevented accidental clicks.
+- "The delete button text is a bit hard to read against the blue background."
 
 ---
 
@@ -46,6 +49,7 @@
 | 23:11 | T2 | Edited task. Form submission triggered reload. | basic-func |
 | 23:11 | T4 | Deleted task. **No confirmation dialog** (expected). Task disappeared immediately. | trade-off |
 
+**Confidence**: 3/5 (Unsure if actions succeeded)
 **Debrief notes**:
 - "The page flashing is noticeable compared to before."
 - Validated PRG pattern: Refreshing after add/delete didn't re-submit.
@@ -65,6 +69,7 @@
 | 23:17 | T1 | Filtered tasks. **Unexpected page reload** (metrics show off). Likely pressed Enter? | ux-anomaly |
 | 23:18 | T3 | Triggered validation error. Live region announced "Title is required". | a11y-error |
 
+**Confidence**: 4/5 (Generally good, confused by reload)
 **Debrief notes**:
 - Filter triggered a full reload instead of dynamic update twice (user pressed Enter?).
 - Error announcements worked perfectly in HTMX mode.
