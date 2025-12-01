@@ -3,8 +3,8 @@
 > **📥 Download this template**: [COMP2850-submission-template.md](/downloads/COMP2850-submission-template.md)
 > Right-click the link above and select "Save link as..." to download the template file.
 
-**Student**: Weize Zheng 201776501
-**Submission date**: [DD/MM/YYYY]
+**Student**: Weize Zheng 201776501  
+**Submission date**: [01/12/2025]  
 **Academic Year**: 2025-26
 
 ---
@@ -20,7 +20,7 @@
     
 Use ChatGPT for data organization and calculation
 
-Name: Weize Zheng
+Name: Weize Zheng  
 Date: 01/12/2025
 
 ---
@@ -84,7 +84,6 @@ Navigate to the delete button and remove the task
 - **Target time**: < 1 minute
 - **Linked to**:Story S3
 
-[Add Tasks 4-5 as needed]
 
 ---
 
@@ -99,10 +98,10 @@ Navigate to the delete button and remove the task
 - [x] "I may take screenshots and notes. I'll remove any identifying information."
 - [x] "Do you consent to participate?" [Wait for verbal yes]
 
-**Recorded consent timestamp**: [e.g., "P1 consented 22/11/2025 14:05"]
-P1 consented 28/11/2025 22:50
-P2 consented 28/11/2025 23:01
-P3 consented 28/11/2025 23:07
+**Recorded consent timestamp**:
+P1 consented 28/11/2025 22:50  
+P2 consented 28/11/2025 23:01  
+P3 consented 28/11/2025 23:07  
 P4 consented 28/11/2025 23:15
 
 ---
@@ -331,7 +330,7 @@ button {
 | S2 | 2.4.1 Bypass blocks | A | Pass | Main landmark present |
 | S3 | 1.1.1 Alt text | A | Pass | N/A (No decorative images used) |
 
-**Summary**: 20/20 pass, 0/20 fail
+**Summary**: 20/20 pass, 0/20 fail  
 **Critical failures** (if any): None (Previously failed V1 and N1/Safety, now fixed)
 
 ---
