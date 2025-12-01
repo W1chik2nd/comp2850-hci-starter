@@ -357,7 +357,8 @@ Re-pilot sample size (n=1) is minimal due to time constraints. While the confirm
 |----------|---------------|-------------------------|
 | **Finding 1 (No-JS Delete)** | | |
 | `missing Confirmation (No-JS)/before-no-js-deleting.png` | Task deleted immediately without confirmation in No-JS mode | Finding #1 (Before) |
-| `missing Confirmation (No-JS)/before-enabled-js-deleting.png` | Confirmation dialog appears correctly when JS is enabled (contrast) | Finding #1 (Comparison) |
+| `missing Confirmation (No-JS)/before-enabled-js-deleting.png` | Confirmation dialog appears correctly when JS is enabled | Finding #1 (Before) |
+| `missing Confirmation (No-JS)/no-js-delete-confirmation.png` | Redirected to a confirmation page on no-JS mode | Finding #1 (fixed) |
 | **Finding 2 (Button Contrast)** | | |
 | `Button contrast too low/original-button-1.png` | Dark text on dark blue background (low contrast) | Finding #2 (Before) |
 | `Button contrast too low/fixed-button-1.png` | White text on dark blue background (high contrast) | Fix #2 (Verification) |
