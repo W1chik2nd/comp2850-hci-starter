@@ -6,8 +6,11 @@
 <section aria-labelledby="list-heading">
   <h2 id="list-heading">Current tasks ({{ page.totalItems }})</h2>
   {# Minor Issue: Image without alt text for Week 7 Lab 2 discovery #}
-  <img src="/static/img/icon.png" width="16" height="16">
-  
+  <div style="text-align:center;">
+    <img src="/static/img/9.webp" width="300" height="300">
+    <img src="/static/img/6.gif" width="300" height="300">
+  </div>
+
   {% include "tasks/_list.peb" %}
   {% include "tasks/_pager.peb" %}
 </section>
